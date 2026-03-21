@@ -77,7 +77,9 @@ INSTRUCCIONES DE HOSTING (ESPANOL):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MR HATS - Premium Hats | San Antonio, TX</title>
 <meta name="description" content="MR HATS - Premium drops, fast replies, local sales in San Antonio, TX. Shop exclusive hats and caps.">
+<meta name="referrer" content="no-referrer">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://i.postimg.cc" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
@@ -379,6 +381,8 @@ input, select, textarea { font-family: var(--font); }
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 .product-card:hover .img-wrap img { transform: scale(1.08); }
@@ -510,7 +514,9 @@ input, select, textarea { font-family: var(--font); }
 .modal-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 .gallery-nav {
@@ -1219,8 +1225,39 @@ const DEFAULT_PRODUCTS = [
     brand: '31 Hats',
     price: 45,
     description: 'A bold statement piece featuring premium black fabric with gold crown embroidery. Structured fit, adjustable snapback.',
-    image: 'https://images.unsplash.com/photo-1521369909029-2afed882baee?q=80&w=600&auto=format&fit=crop',
-    images: ['https://images.unsplash.com/photo-1521369909029-2afed882baee?q=80&w=600&auto=format&fit=crop']
+    image: 'https://i.postimg.cc/pPGVnv5R/Producto_0101_foto01.jpg',
+    images: [
+      'https://i.postimg.cc/pPGVnv5R/Producto_0101_foto01.jpg',
+      'https://i.postimg.cc/ds8FDzTR/Producto_0393.jpg',
+      'https://i.postimg.cc/Y2Bt2tny/Producto_0384.jpg',
+      'https://i.postimg.cc/ry2qyqnZ/Producto_0385.jpg',
+      'https://i.postimg.cc/HH1myszr/Producto_0564.jpg',
+      'https://i.postimg.cc/YkB7WqRx/Producto_0579.jpg',
+      'https://i.postimg.cc/7Dr42Y9g/Producto_0691.jpg',
+      'https://i.postimg.cc/MWB46VhN/Producto_0715.jpg',
+      'https://i.postimg.cc/VYtTfn3T/Producto_0716.jpg',
+      'https://i.postimg.cc/jsf9xPpV/Producto_0720.jpg',
+      'https://i.postimg.cc/QX6brttd/Producto_0722.jpg',
+      'https://i.postimg.cc/YtzRb8Bh/Producto_0811.jpg',
+      'https://i.postimg.cc/2CDTQMMY/Producto_0821.jpg',
+      'https://i.postimg.cc/5fbqYvYh/Producto_0853.jpg',
+      'https://i.postimg.cc/FhNgdckK/Producto_0854.jpg',
+      'https://i.postimg.cc/Qjmgptcj/Producto_0855.jpg',
+      'https://i.postimg.cc/jtKJZTxM/Producto_0925.jpg',
+      'https://i.postimg.cc/4sZhBGfn/Producto_0926.jpg',
+      'https://i.postimg.cc/sj7v46bH/Producto_0969.jpg',
+      'https://i.postimg.cc/ChkzsPWT/Producto_0971.jpg',
+      'https://i.postimg.cc/66KTjVXX/Producto_0974.jpg',
+      'https://i.postimg.cc/RCmqs1BN/Producto_0976.jpg',
+      'https://i.postimg.cc/ssw1mZ0f/Producto_0978.jpg',
+      'https://i.postimg.cc/8TYcQgSn/Producto_0982.jpg',
+      'https://i.postimg.cc/Lm55b6rT/Producto_0984.jpg',
+      'https://i.postimg.cc/VfQNv95g/Producto_0986.jpg',
+      'https://i.postimg.cc/cxRLnK82/Producto_0988.jpg',
+      'https://i.postimg.cc/v8GHLQrM/Producto_0989.jpg',
+      'https://i.postimg.cc/0ks8P8Hm/Producto_0993.jpg',
+      'https://i.postimg.cc/RSLv0jj2/Producto_0995.jpg'
+    ]
   },
   {
     id: '2',

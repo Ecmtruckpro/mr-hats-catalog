@@ -513,6 +513,109 @@ input, select, textarea { font-family: var(--font); }
   object-fit: cover;
 }
 
+.gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+.gallery-nav:hover { background: var(--gold); }
+.gallery-nav.prev { left: 8px; }
+.gallery-nav.next { right: 8px; }
+
+.gallery-dots {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 3;
+}
+.gallery-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: var(--transition);
+}
+.gallery-dot.active { background: var(--gold); }
+
+.gallery-counter {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  z-index: 3;
+}
+
+.multi-image-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.multi-image-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.multi-image-row input {
+  flex: 1;
+}
+.multi-image-row .remove-img-btn {
+  background: var(--danger);
+  color: #fff;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.multi-image-row .img-preview-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.add-image-btn {
+  background: transparent;
+  border: 1px dashed var(--border);
+  color: var(--text-muted);
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: var(--transition);
+}
+.add-image-btn:hover { border-color: var(--gold); color: var(--gold); }
+.brand-photo-count { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; }
+
 .modal-body { padding: 1.5rem; }
 
 .modal-body .brand-label {
@@ -1116,7 +1219,8 @@ const DEFAULT_PRODUCTS = [
     brand: '31 Hats',
     price: 45,
     description: 'A bold statement piece featuring premium black fabric with gold crown embroidery. Structured fit, adjustable snapback.',
-    image: 'https://images.unsplash.com/photo-1521369909029-2afed882baee?q=80&w=600&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1521369909029-2afed882baee?q=80&w=600&auto=format&fit=crop',
+    images: ['https://images.unsplash.com/photo-1521369909029-2afed882baee?q=80&w=600&auto=format&fit=crop']
   },
   {
     id: '2',
@@ -1124,7 +1228,8 @@ const DEFAULT_PRODUCTS = [
     brand: 'Dandy Hats',
     price: 42,
     description: 'Sleek midnight-toned cap with street-ready style. Curved brim, breathable mesh panels, and premium stitching.',
-    image: 'https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?q=80&w=600&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?q=80&w=600&auto=format&fit=crop',
+    images: ['https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?q=80&w=600&auto=format&fit=crop']
   },
   {
     id: '3',
@@ -1132,7 +1237,8 @@ const DEFAULT_PRODUCTS = [
     brand: 'Barbas Hats',
     price: 39,
     description: 'Earthy sand-toned cap with a clean minimal design. Unstructured low-profile fit, cotton twill construction.',
-    image: 'https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?q=80&w=600&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?q=80&w=600&auto=format&fit=crop',
+    images: ['https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?q=80&w=600&auto=format&fit=crop']
   },
   {
     id: '4',
@@ -1140,7 +1246,8 @@ const DEFAULT_PRODUCTS = [
     brand: 'Cash Money Hats',
     price: 48,
     description: 'Fiery red cap that turns heads. Features bold Cash Money branding, structured crown, and premium snap closure.',
-    image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=600&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=600&auto=format&fit=crop',
+    images: ['https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=600&auto=format&fit=crop']
   },
   {
     id: '5',
@@ -1148,7 +1255,8 @@ const DEFAULT_PRODUCTS = [
     brand: 'Inedit Hats',
     price: 40,
     description: 'Timeless grey classic with understated elegance. Wool blend material, structured mid-profile, embroidered logo.',
-    image: 'https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?q=80&w=600&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?q=80&w=600&auto=format&fit=crop',
+    images: ['https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?q=80&w=600&auto=format&fit=crop']
   },
   {
     id: '6',
@@ -1156,7 +1264,8 @@ const DEFAULT_PRODUCTS = [
     brand: 'MR Hats Exclusive',
     price: 55,
     description: 'Our signature exclusive. Pure black onyx-inspired design with gold MR HATS logo. Limited edition, premium quality.',
-    image: 'https://images.unsplash.com/photo-1556306535-0f09a537f0a3?q=80&w=600&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1556306535-0f09a537f0a3?q=80&w=600&auto=format&fit=crop',
+    images: ['https://images.unsplash.com/photo-1556306535-0f09a537f0a3?q=80&w=600&auto=format&fit=crop']
   }
 ];
 
@@ -1188,8 +1297,29 @@ let cart = loadData('cart', []);
 let activeBrand = 'all';
 let adminLoggedIn = false;
 
-// Ensure products have IDs
-products.forEach((p, i) => { if (!p.id) p.id = Date.now().toString() + i; });
+// Ensure products have IDs and migrate single image to images array
+products.forEach((p, i) => {
+  if (!p.id) p.id = Date.now().toString() + i;
+  if (!p.images) p.images = p.image ? [p.image] : [];
+});
+
+const MAX_PHOTOS_PER_BRAND = 30;
+let galleryIndex = 0;
+
+function getProductImages(p) {
+  return p.images && p.images.length > 0 ? p.images : (p.image ? [p.image] : []);
+}
+
+function getProductImage(p) {
+  const imgs = getProductImages(p);
+  return imgs.length > 0 ? imgs[0] : '';
+}
+
+function getBrandPhotoCount(brand, excludeProductId) {
+  return products
+    .filter(p => p.brand === brand && p.id !== excludeProductId)
+    .reduce((sum, p) => sum + getProductImages(p).length, 0);
+}
 
 /* ============================================================
    UTILITY FUNCTIONS
@@ -1250,7 +1380,8 @@ function renderProducts() {
   grid.innerHTML = filtered.map(p => `
     <div class="product-card" onclick="openProduct('${p.id}')">
       <div class="img-wrap">
-        <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22><rect fill=%22%231a1a1a%22 width=%22400%22 height=%22400%22/><text x=%22200%22 y=%22200%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23444%22 font-size=%2240%22>No Image</text></svg>'">
+        <img src="${getProductImage(p)}" alt="${p.name}" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22><rect fill=%22%231a1a1a%22 width=%22400%22 height=%22400%22/><text x=%22200%22 y=%22200%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23444%22 font-size=%2240%22>No Image</text></svg>'">
+        ${getProductImages(p).length > 1 ? `<span class="gallery-counter">${getProductImages(p).length} fotos</span>` : ''}
         <button class="quick-add" onclick="event.stopPropagation();addToCart('${p.id}')" title="Add to Cart">+</button>
       </div>
       <div class="product-info">
@@ -1269,7 +1400,26 @@ function openProduct(id) {
   const p = products.find(x => x.id === id);
   if (!p) return;
 
-  document.getElementById('modalImg').innerHTML = `<img src="${p.image}" alt="${p.name}">`;
+  const imgs = getProductImages(p);
+  galleryIndex = 0;
+
+  function renderGallery(idx) {
+    const container = document.getElementById('modalImg');
+    const img = imgs[idx] || '';
+    container.innerHTML = `
+      <img src="${img}" alt="${p.name}">
+      ${imgs.length > 1 ? `
+        <button class="gallery-nav prev" onclick="event.stopPropagation();galleryNav('${p.id}', -1)">&#8249;</button>
+        <button class="gallery-nav next" onclick="event.stopPropagation();galleryNav('${p.id}', 1)">&#8250;</button>
+        <span class="gallery-counter">${idx + 1} / ${imgs.length}</span>
+        <div class="gallery-dots">${imgs.map((_, i) => `<button class="gallery-dot ${i === idx ? 'active' : ''}" onclick="event.stopPropagation();galleryGo('${p.id}', ${i})"></button>`).join('')}</div>
+      ` : ''}
+    `;
+  }
+
+  window._currentGalleryRender = renderGallery;
+  renderGallery(0);
+
   document.getElementById('modalBody').innerHTML = `
     <div class="brand-label">${p.brand}</div>
     <h2>${p.name}</h2>
@@ -1287,6 +1437,19 @@ function openProduct(id) {
 function closeModal() {
   document.getElementById('productModal').classList.remove('open');
   document.body.style.overflow = '';
+}
+
+function galleryNav(id, dir) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  const imgs = getProductImages(p);
+  galleryIndex = (galleryIndex + dir + imgs.length) % imgs.length;
+  if (window._currentGalleryRender) window._currentGalleryRender(galleryIndex);
+}
+
+function galleryGo(id, idx) {
+  galleryIndex = idx;
+  if (window._currentGalleryRender) window._currentGalleryRender(galleryIndex);
 }
 
 function askAboutProduct(id) {
@@ -1369,7 +1532,7 @@ function renderCart() {
     if (!p) return '';
     return `
       <div class="cart-item">
-        <div class="cart-item-img"><img src="${p.image}" alt="${p.name}" loading="lazy"></div>
+        <div class="cart-item-img"><img src="${getProductImage(p)}" alt="${p.name}" loading="lazy"></div>
         <div class="cart-item-info">
           <div class="name">${p.name}</div>
           <div class="brand">${p.brand}</div>
@@ -1522,10 +1685,10 @@ function renderAdminProducts(el) {
     <div class="admin-product-list">
       ${products.map(p => `
         <div class="admin-product-item">
-          <div class="thumb"><img src="${p.image}" alt="${p.name}" loading="lazy"></div>
+          <div class="thumb"><img src="${getProductImage(p)}" alt="${p.name}" loading="lazy"></div>
           <div class="info">
             <div class="name">${p.name}</div>
-            <div class="meta">${p.brand} &middot; ${formatPrice(p.price)}</div>
+            <div class="meta">${p.brand} &middot; ${formatPrice(p.price)} &middot; ${getProductImages(p).length} foto${getProductImages(p).length !== 1 ? 's' : ''}</div>
           </div>
           <div class="actions">
             <button class="btn btn-outline btn-sm" onclick="editProduct('${p.id}')">&#9998; Edit</button>
@@ -1537,10 +1700,14 @@ function renderAdminProducts(el) {
   `;
 }
 
+let productImageUrls = [''];
+
 function renderAdminAddProduct(el, product = null) {
   const isEdit = !!product;
-  const p = product || { name: '', brand: '', price: '', description: '', image: '' };
+  const p = product || { name: '', brand: '', price: '', description: '', images: [] };
   const brands = getBrands();
+  const existingImages = getProductImages(p);
+  productImageUrls = existingImages.length > 0 ? [...existingImages] : [''];
 
   el.innerHTML = `
     <h3 style="margin-bottom:1rem">${isEdit ? 'Edit Product' : 'Add New Product'}</h3>
@@ -1552,7 +1719,7 @@ function renderAdminAddProduct(el, product = null) {
       </div>
       <div class="form-group">
         <label>Brand *</label>
-        <input type="text" id="pBrand" value="${p.brand}" placeholder="e.g., MR Hats Exclusive" list="brandList">
+        <input type="text" id="pBrand" value="${p.brand}" placeholder="e.g., MR Hats Exclusive" list="brandList" oninput="updateBrandPhotoCount()">
         <datalist id="brandList">${brands.map(b => `<option value="${b}">`).join('')}</datalist>
       </div>
     </div>
@@ -1561,47 +1728,123 @@ function renderAdminAddProduct(el, product = null) {
         <label>Price (USD) *</label>
         <input type="number" id="pPrice" value="${p.price}" placeholder="45" step="0.01" min="0">
       </div>
-      <div class="form-group">
-        <label>Image URL *</label>
-        <input type="url" id="pImage" value="${p.image}" placeholder="https://i.ibb.co/...">
-      </div>
+    </div>
+    <div class="form-group">
+      <label>Image URLs * (max ${MAX_PHOTOS_PER_BRAND} fotos por marca)</label>
+      <div id="imageUrlList" class="multi-image-list"></div>
+      <button type="button" class="add-image-btn" id="addImageBtn" onclick="addImageUrl()">+ Agregar otra foto</button>
+      <div class="brand-photo-count" id="brandPhotoCount"></div>
     </div>
     <div class="form-group">
       <label>Description</label>
       <textarea id="pDesc" placeholder="Describe the product...">${p.description || ''}</textarea>
     </div>
     <div style="margin-bottom:1rem;padding:0.75rem;background:var(--bg-secondary);border-radius:var(--radius-sm);font-size:0.8rem;color:var(--text-muted)">
-      <strong>&#128248; Image Tips:</strong> Upload your image to <a href="https://imgbb.com" target="_blank" style="color:var(--gold)">imgbb.com</a> or <a href="https://postimages.org" target="_blank" style="color:var(--gold)">postimages.org</a>, then paste the direct link here.
+      <strong>&#128248; Image Tips:</strong> Sube tus fotos a <a href="https://imgbb.com" target="_blank" style="color:var(--gold)">imgbb.com</a> o <a href="https://postimages.org" target="_blank" style="color:var(--gold)">postimages.org</a>, luego pega el link directo aqui. Puedes agregar hasta ${MAX_PHOTOS_PER_BRAND} fotos por marca.
     </div>
     <div style="display:flex;gap:0.75rem">
       <button class="btn btn-gold" onclick="saveProduct(${isEdit ? `'${p.id}'` : 'null'})">${isEdit ? 'Update Product' : 'Add Product'}</button>
       ${isEdit ? `<button class="btn btn-outline" onclick="editingProductId=null;currentAdminTab='products';renderAdminPanel()">Cancel</button>` : ''}
     </div>
   `;
+  renderImageUrlInputs();
+  updateBrandPhotoCount();
+}
+
+function renderImageUrlInputs() {
+  const container = document.getElementById('imageUrlList');
+  if (!container) return;
+  container.innerHTML = productImageUrls.map((url, i) => `
+    <div class="multi-image-row">
+      <span style="color:var(--text-muted);font-size:0.75rem;min-width:20px">${i + 1}.</span>
+      ${url ? `<img class="img-preview-thumb" src="${url}" onerror="this.style.display='none'" alt="">` : ''}
+      <input type="url" value="${url}" placeholder="https://i.ibb.co/..." onchange="updateImageUrl(${i}, this.value)" oninput="updateImageUrl(${i}, this.value)">
+      ${productImageUrls.length > 1 ? `<button type="button" class="remove-img-btn" onclick="removeImageUrl(${i})" title="Quitar">&times;</button>` : ''}
+    </div>
+  `).join('');
+  updateAddImageButton();
+}
+
+function addImageUrl() {
+  const brand = document.getElementById('pBrand') ? document.getElementById('pBrand').value.trim() : '';
+  const editId = editingProductId || null;
+  const otherPhotos = brand ? getBrandPhotoCount(brand, editId) : 0;
+  const currentPhotos = productImageUrls.filter(u => u.trim()).length;
+  if (otherPhotos + currentPhotos >= MAX_PHOTOS_PER_BRAND) {
+    toast('Limite alcanzado: ' + MAX_PHOTOS_PER_BRAND + ' fotos por marca.');
+    return;
+  }
+  productImageUrls.push('');
+  renderImageUrlInputs();
+}
+
+function removeImageUrl(idx) {
+  productImageUrls.splice(idx, 1);
+  if (productImageUrls.length === 0) productImageUrls = [''];
+  renderImageUrlInputs();
+  updateBrandPhotoCount();
+}
+
+function updateImageUrl(idx, val) {
+  productImageUrls[idx] = val;
+  updateBrandPhotoCount();
+}
+
+function updateAddImageButton() {
+  const btn = document.getElementById('addImageBtn');
+  if (!btn) return;
+  const brand = document.getElementById('pBrand') ? document.getElementById('pBrand').value.trim() : '';
+  const editId = editingProductId || null;
+  const otherPhotos = brand ? getBrandPhotoCount(brand, editId) : 0;
+  const currentPhotos = productImageUrls.filter(u => u.trim()).length;
+  const remaining = MAX_PHOTOS_PER_BRAND - otherPhotos - currentPhotos;
+  btn.style.display = remaining <= 0 ? 'none' : '';
+}
+
+function updateBrandPhotoCount() {
+  const el = document.getElementById('brandPhotoCount');
+  if (!el) return;
+  const brand = document.getElementById('pBrand') ? document.getElementById('pBrand').value.trim() : '';
+  if (!brand) { el.textContent = ''; return; }
+  const editId = editingProductId || null;
+  const otherPhotos = getBrandPhotoCount(brand, editId);
+  const currentPhotos = productImageUrls.filter(u => u.trim()).length;
+  const total = otherPhotos + currentPhotos;
+  el.textContent = `Fotos en "${brand}": ${total} / ${MAX_PHOTOS_PER_BRAND}`;
+  el.style.color = total >= MAX_PHOTOS_PER_BRAND ? 'var(--danger)' : 'var(--text-muted)';
+  updateAddImageButton();
 }
 
 function saveProduct(id) {
   const name = document.getElementById('pName').value.trim();
   const brand = document.getElementById('pBrand').value.trim();
   const price = parseFloat(document.getElementById('pPrice').value);
-  const image = document.getElementById('pImage').value.trim();
+  const images = productImageUrls.filter(u => u.trim());
+  const image = images.length > 0 ? images[0] : '';
   const description = document.getElementById('pDesc').value.trim();
   const msgEl = document.getElementById('productFormMsg');
 
-  if (!name || !brand || isNaN(price) || !image) {
-    msgEl.innerHTML = '<div class="alert alert-error">Please fill all required fields (*).</div>';
+  if (!name || !brand || isNaN(price) || images.length === 0) {
+    msgEl.innerHTML = '<div class="alert alert-error">Llena todos los campos requeridos (*). Necesitas al menos 1 imagen.</div>';
+    return;
+  }
+
+  // Check brand photo limit
+  const otherPhotos = getBrandPhotoCount(brand, id);
+  if (otherPhotos + images.length > MAX_PHOTOS_PER_BRAND) {
+    msgEl.innerHTML = `<div class="alert alert-error">Limite excedido: la marca "${brand}" ya tiene ${otherPhotos} fotos. Maximo ${MAX_PHOTOS_PER_BRAND} por marca.</div>`;
     return;
   }
 
   if (id) {
     const idx = products.findIndex(p => p.id === id);
     if (idx !== -1) {
-      products[idx] = { ...products[idx], name, brand, price, image, description };
-      toast('Product updated!');
+      products[idx] = { ...products[idx], name, brand, price, image, images, description };
+      toast('Producto actualizado!');
     }
   } else {
-    products.push({ id: uid(), name, brand, price, image, description });
-    toast('Product added!');
+    products.push({ id: uid(), name, brand, price, image, images, description });
+    toast('Producto agregado!');
   }
 
   saveData('products', products);
@@ -1640,7 +1883,8 @@ function renderAdminBrands(el) {
       ${brands.length === 0 ? '<p style="color:var(--text-muted)">No brands yet.</p>' :
         brands.map(b => {
           const count = products.filter(p => p.brand === b).length;
-          return `<span class="admin-brand-chip">${b} (${count}) <button class="remove-brand" onclick="deleteBrand('${b.replace(/'/g, "\\'")}')" title="Delete brand and all its products">&times;</button></span>`;
+          const photoCount = getBrandPhotoCount(b, null);
+          return `<span class="admin-brand-chip">${b} (${count} productos, ${photoCount}/${MAX_PHOTOS_PER_BRAND} fotos) <button class="remove-brand" onclick="deleteBrand('${b.replace(/'/g, "\\'")}')" title="Delete brand and all its products">&times;</button></span>`;
         }).join('')
       }
     </div>

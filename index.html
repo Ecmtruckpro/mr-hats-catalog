@@ -2197,6 +2197,11 @@ const DEFAULT_SETTINGS = {
 /* ============================================================
    STATE MANAGEMENT
    ============================================================ */
+
+// Increment this version whenever DEFAULT_PRODUCTS or DEFAULT_SETTINGS change.
+// This forces all visitors to get the updated catalog instead of stale localStorage data.
+const CATALOG_VERSION = 2;
+
 function loadData(key, defaults) {
   try {
     const d = localStorage.getItem('mrhats_' + key);
@@ -2206,6 +2211,14 @@ function loadData(key, defaults) {
 
 function saveData(key, data) {
   localStorage.setItem('mrhats_' + key, JSON.stringify(data));
+}
+
+// Check catalog version — if it changed, clear stale product/settings cache
+const savedVersion = parseInt(localStorage.getItem('mrhats_catalog_version') || '0', 10);
+if (savedVersion < CATALOG_VERSION) {
+  localStorage.removeItem('mrhats_products');
+  localStorage.removeItem('mrhats_settings');
+  localStorage.setItem('mrhats_catalog_version', CATALOG_VERSION.toString());
 }
 
 let products = loadData('products', DEFAULT_PRODUCTS);

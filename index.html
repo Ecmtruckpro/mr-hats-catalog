@@ -181,37 +181,23 @@ input, select, textarea { font-family: var(--font); }
   gap: 0.75rem;
 }
 
-.cart-btn {
-  position: relative;
-  background: transparent;
-  color: var(--text-primary);
-  font-size: 1.4rem;
-  padding: 0.5rem;
-  border-radius: var(--radius-sm);
-  transition: var(--transition);
-}
-
-.cart-btn:hover { color: var(--gold); }
-
-.cart-badge {
-  position: absolute;
-  top: 0; right: -2px;
-  background: var(--gold);
-  color: var(--bg-primary);
-  font-size: 0.65rem;
-  font-weight: 700;
-  min-width: 18px;
-  height: 18px;
-  border-radius: 9px;
+.whatsapp-header-btn {
   display: flex;
   align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transform: scale(0);
+  gap: 0.4rem;
+  background: #25D366;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
   transition: var(--transition);
 }
 
-.cart-badge.visible { opacity: 1; transform: scale(1); }
+.whatsapp-header-btn:hover { background: #1ebe57; }
+
+.whatsapp-header-btn svg { flex-shrink: 0; }
 
 .admin-btn {
   background: transparent;
@@ -1181,10 +1167,10 @@ input, select, textarea { font-family: var(--font); }
   <div class="header-inner">
     <a href="#" class="logo" onclick="return false"><span>El Mr</span> Hats</a>
     <div class="header-actions">
-      <button class="cart-btn" onclick="toggleCart()" title="Shopping Cart">
-        <span>&#128722;</span>
-        <span class="cart-badge" id="cartBadge">0</span>
-      </button>
+      <a class="whatsapp-header-btn" href="https://wa.me/12107458452" target="_blank" rel="noopener noreferrer" title="Contact on WhatsApp">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span>WhatsApp</span>
+      </a>
       <button class="admin-btn" onclick="openAdmin()" title="Admin Panel">&#128274;</button>
     </div>
   </div>
@@ -1234,18 +1220,6 @@ input, select, textarea { font-family: var(--font); }
   </div>
 </div>
 
-<!-- ============================================================
-     CART SIDEBAR
-     ============================================================ -->
-<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
-<aside class="cart-sidebar" id="cartSidebar">
-  <div class="cart-header">
-    <h3>&#128722; Your Cart</h3>
-    <button class="cart-close" onclick="toggleCart()">&times;</button>
-  </div>
-  <div class="cart-items" id="cartItems"></div>
-  <div class="cart-footer" id="cartFooter"></div>
-</aside>
 
 <!-- ============================================================
      ADMIN OVERLAY
@@ -1263,7 +1237,7 @@ input, select, textarea { font-family: var(--font); }
     <a href="https://www.tiktok.com/@el_mrhats" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
       <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.75a8.18 8.18 0 0 0 4.76 1.52V6.84a4.84 4.84 0 0 1-1-.15z"/></svg>
     </a>
-    <a href="https://www.facebook.com/profile.php?id=61575826498081" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+    <a href="https://www.facebook.com/ElmrhatsSatx" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
       <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
     </a>
     <a href="https://www.instagram.com/el_mrhats/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -2135,7 +2109,7 @@ const DEFAULT_PRODUCTS = [
 
 const DEFAULT_SETTINGS = {
   storeName: 'MR HATS',
-  whatsapp: '12105551234',
+  whatsapp: '12107458452',
   shippingCost: 0,
   taxRate: 8.25,
   adminPassword: 'mrhats2024'
@@ -2259,7 +2233,7 @@ function renderProducts() {
       <div class="img-wrap">
         <img src="${getProductImage(p)}" alt="${p.name}" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22><rect fill=%22%231a1a1a%22 width=%22400%22 height=%22400%22/><text x=%22200%22 y=%22200%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23444%22 font-size=%2240%22>No Image</text></svg>'">
         ${getProductImages(p).length > 1 ? `<span class="gallery-counter">${getProductImages(p).length} fotos</span>` : ''}
-        <button class="quick-add" onclick="event.stopPropagation();addToCart('${p.id}')" title="Add to Cart">+</button>
+        <button class="quick-add" onclick="event.stopPropagation();askAboutProduct('${p.id}')" title="Ask on WhatsApp">&#128172;</button>
       </div>
       <div class="product-info">
         <div class="product-brand">${p.brand}</div>
@@ -2303,8 +2277,7 @@ function openProduct(id) {
     <div class="price">${formatPrice(p.price)}</div>
     <p class="description">${p.description || 'Premium quality hat available exclusively at MR HATS.'}</p>
     <div class="modal-actions">
-      <button class="btn btn-gold" onclick="addToCart('${p.id}');closeModal()">&#128722; Add to Cart</button>
-      <button class="btn btn-whatsapp" onclick="askAboutProduct('${p.id}')">&#128172; Ask on WhatsApp</button>
+      <button class="btn btn-whatsapp" onclick="askAboutProduct('${p.id}')">&#128172; Contact on WhatsApp</button>
     </div>
   `;
   document.getElementById('productModal').classList.add('open');
@@ -2332,7 +2305,7 @@ function galleryGo(id, idx) {
 function askAboutProduct(id) {
   const p = products.find(x => x.id === id);
   if (!p) return;
-  const msg = encodeURIComponent(`Hi! I'm interested in the "${p.name}" by ${p.brand} (${formatPrice(p.price)}) from your MR HATS catalog. Is it available?`);
+  const msg = encodeURIComponent(`Hi! I'm interested in the "${p.name}" by ${p.brand} (${formatPrice(p.price)}) from El Mr Hats catalog. Is it available?`);
   window.open(`https://wa.me/${settings.whatsapp}?text=${msg}`, '_blank');
 }
 
@@ -2948,7 +2921,6 @@ function resetDefaults() {
 
   renderBrandFilters();
   renderProducts();
-  updateCartBadge();
   renderAdminPanel();
   toast('Reset to defaults complete.');
 }
@@ -2959,7 +2931,6 @@ function resetDefaults() {
 function init() {
   renderBrandFilters();
   renderProducts();
-  updateCartBadge();
 
   // Check for #admin hash
   if (window.location.hash === '#admin' || window.location.hash === '#/admin') {
@@ -2977,7 +2948,6 @@ function init() {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       if (document.getElementById('adminOverlay').classList.contains('open')) closeAdmin();
-      else if (document.getElementById('cartSidebar').classList.contains('open')) toggleCart();
       else if (document.getElementById('productModal').classList.contains('open')) closeModal();
     }
   });
